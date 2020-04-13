@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>DatCord</title>
+</head>
+<body>
+    <div id="root">
+        <div id="App">
+            <div class="global-container">
+                <div class="form-container">
+                    <div class="logo"> <img src="logo.png" alt="DatCord" width="70px" height="70px"> DatCord</div>
+                    <div class="form">
+                        <div class="input-group vertical">
+                            <label for="username">Username</label>
+                            <input id="username" name="username" type="text">
+                        </div>
+
+                        <div class="input-group vertical">
+                            <label for="room">Room ID</label>
+                            <input id="room" name="room" type="text">
+                        </div>
+
+                        <p class="error"></p>
+
+                        <div class="input-group horizontal">
+                            <button id="join">Join room</button>
+                            or
+                            <button id="create">Create room</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

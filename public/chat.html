@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.3/qs.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>DatCord</title>
+</head>
+<body>
+    <div id="root">
+        <div id="App">
+            <div class="global-container">
+                <div class="page-container">
+                    <button class="show">></button>
+                    <div class="logo-container">
+                        <div class="logo"><img src="logo.png" alt="DatCord" width="70px" height="70px"> DatCord</div>
+                    </div>
+                    <div class="chat-container">
+                        <div class="info hidden">
+                            <div class="room">
+                                <h2>Room ID</h2>
+                                <p id="roomid">IHyGUTI8ugHBUt678HGBIyin</p>
+                            </div>
+                            <div class="users">
+                                <h2>online users</h2>
+                                <ul id="users">
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="chat">
+                            <div class="convo">
+                                
+                            </div>
+                            <div class="composer">
+                                <div id="typing"><div><span>Hmad</span> is typing...</div></div>
+                                <form action="" id="message-form">
+                                    <input type="text" id="textmessage">
+                                    <button id="send" type="submit"><img src="send.png" alt="send" width="24px" height="24px"><span>Send</span></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="chat.js"></script>
+</body>
+</html>
