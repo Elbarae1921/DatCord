@@ -21,12 +21,15 @@
                         <div class="info hidden">
                             <div class="room">
                                 <h2>Room ID</h2>
-                                <p id="roomid">IHyGUTI8ugHBUt678HGBIyin</p>
+                                <p id="roomid"></p>
                             </div>
                             <div class="users">
                                 <h2>online users</h2>
                                 <ul id="users">
                                 </ul>
+                            </div>
+                            <div class="leave">
+                                <button id="leave">Leave the room</button>
                             </div>
                         </div>
                         <div class="chat">
@@ -34,10 +37,10 @@
                                 
                             </div>
                             <div class="composer">
-                                <div id="typing"><div><span>Hmad</span> is typing...</div></div>
+                                <div id="typing"><div></div></div>
                                 <form action="" id="message-form">
                                     <input type="text" id="textmessage">
-                                    <button id="send" type="submit"><img src="send.png" alt="send" width="24px" height="24px"><span>Send</span></button>
+                                    <button id="send" type="submit"><img src="send.png" alt="send" width="24px" height="24px" draggable="false"></button>
                                 </form>
                             </div>
                         </div>
