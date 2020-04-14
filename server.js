@@ -22,20 +22,22 @@ io.on('connection', socket => {
         // add the user to the user's list in /utils/users.js
         const user = userJoin(socket.id, username, room);
 
-        // send back the user id (which is just the socket id) back to the socket/user
-        socket.emit('userId', user.id);
+        if(user) {
+            // send back the user id (which is just the socket id) back to the socket/user
+            socket.emit('userId', user.id);
 
-        // add the socket to the requested room
-        socket.join(user.room);
+            // add the socket to the requested room
+            socket.join(user.room);
 
-        // then send a welcome message
-        socket.emit('message', formatMessage('DatCord Bot', 'DatCord Bot', 'welcome to DatCord'));
+            // then send a welcome message
+            socket.emit('message', formatMessage('DatCord Bot', 'DatCord Bot', 'welcome to DatCord'));
 
-        // and notify the other users in the same room that a user has joined
-        socket.broadcast.to(user.room).emit('message', formatMessage('DatCord Bot', 'DatCord Bot', `${user.username} has joined the chat`));
-    
-        // finally send back the room id and the current online users to all the users in the room
-        io.to(user.room).emit('roomUsers', {room: user.room, users: getRoomUsers(user.room)});
+            // and notify the other users in the same room that a user has joined
+            socket.broadcast.to(user.room).emit('message', formatMessage('DatCord Bot', 'DatCord Bot', `${user.username} has joined the chat`));
+        
+            // finally send back the room id and the current online users to all the users in the room
+            io.to(user.room).emit('roomUsers', {room: user.room, users: getRoomUsers(user.room)});
+        }
     });
 
     // when a new message is sent to a room
@@ -43,8 +45,8 @@ io.on('connection', socket => {
         // fetch which user sent the message
         const user = getCurrentUser(socket.id);
 
-        // send the message back to all the users in the room
-        io.to(user.room).emit('message', formatMessage(user.id, user.username, msg));
+        if(user)
+            io.to(user.room).emit('message', formatMessage(user.id, user.username, msg));// send the message back to all the users in the room
     });
 
     // when a user is typing
@@ -52,8 +54,8 @@ io.on('connection', socket => {
         // get which user send the message
         const user = getCurrentUser(socket.id);
 
-        // broadcast to all the users in the room except the current user (which is typing) that a user is typing
-        socket.broadcast.emit('typing', user.username);
+        if(user)
+            socket.broadcast.emit('typing', user.username); // broadcast to all the users in the room except the current user (which is typing) that a user is typing
     })
     
     // when a user leaves

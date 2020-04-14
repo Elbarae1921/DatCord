@@ -50,6 +50,7 @@ const leave = document.getElementById('leave');
 // ==> initialazing variables
 var isTyping = false;
 var cancel = 0;
+var oldVal = '';
 
 
 
@@ -149,8 +150,16 @@ messageForm.addEventListener('submit', function(e) {
 
 
 // ==> typing event
-message.addEventListener('change', function() { //when the message field's value is changed
-    socket.emit('typing'); //notify the socket that the user is typing
+message.addEventListener('keyup', function() { //when the message field's value is changed
+    if(this.value != oldVal) { //compare the current value of the input to its value from the last keyup event
+        
+        if(this.value.trim() != '') { //skip if the field only contains white space
+
+            socket.emit('typing'); //notify the socket that the user is typing
+
+            oldVal = this.value; //set the old value to the current one
+        }
+    }
 });
 
 // ==> leave button click event
