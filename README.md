@@ -3,8 +3,8 @@ DatCord instant chat app
 
 # Usage
 
-install `npm install`
+install ```npm install```
 
-run `node server.js`
+run ```node server.js```
 
-access `http://localhost:5000`
+access ```http://localhost:5000```
