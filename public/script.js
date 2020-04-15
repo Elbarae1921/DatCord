@@ -45,7 +45,7 @@ join.onclick = function() {
         data: {room: room.value},
         success: function(res) {
             if(res.exists) { //if the room exists redirect to the room in chat.html
-
+                //check if the username is not used by another user
                 if(res.users.filter(user => user.username == username.value).length > 0)
                     errorize(username, "This username is already used in this room");
                 else
