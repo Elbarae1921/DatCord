@@ -44,8 +44,14 @@ join.onclick = function() {
         method: 'POST',
         data: {room: room.value},
         success: function(res) {
-            if(res.exists) //if the room exists redirect to the room in chat.html
-                window.location.href = `/chat.html?create=false&username=${username.value}&room=${room.value}`;
+            if(res.exists) { //if the room exists redirect to the room in chat.html
+
+                if(res.users.filter(user => user.username == username.value).length > 0)
+                    errorize(username, "This username is already used in this room");
+                else
+                    window.location.href = `/chat.html?create=false&username=${username.value}&room=${room.value}`;
+            
+            }
             else    //otherwise display error
                 errorize(room, "This room does not exist.");
         },

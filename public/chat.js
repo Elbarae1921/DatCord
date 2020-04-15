@@ -112,12 +112,10 @@ function addMessage(username, time, message, me='') { //function to add a messag
 function setTyping(username) { //executes when the socket says that a user is typing
     isTyping = true;
     typing.firstElementChild.innerHTML = `${username} is typing ...`;
-    typing.style.display = "flex";
 }
 
 function cancelTyping() { //executes 1s after setTyping()
     typing.firstElementChild.innerHTML = "";
-    typing.style.display = "none";
     isTyping = false;
 }
 

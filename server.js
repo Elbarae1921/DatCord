@@ -89,7 +89,8 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.post('/roomExists', (req, res) => {
     const room = req.body.room || ""; // get the room id sent with the request
     res.json({
-        exists: roomExists(room) //send back true if the room exists, false otherwise
+        exists: roomExists(room), //send back true if the room exists, false otherwise
+        users: getRoomUsers(room)
     })
 });
 
