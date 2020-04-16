@@ -16,6 +16,7 @@ body, html, #root, #App {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    min-height: 400px;
 }
 
 .form-container {
@@ -127,6 +128,7 @@ body, html, #root, #App {
     position: static;
     display: block;
     height: 100%;
+    min-height: 300px;
     width: 20%;
     background: rgba(0, 75, 75, 0.8);
     color: white;
@@ -339,11 +341,25 @@ body, html, #root, #App {
     word-wrap: break-word;
 }
 
+.convo .message-container .message .text a, .convo .message-container .message .text a:focus, .convo .message-container .message .text a:visited {
+    color: white;
+}
+
+.convo .message-container .message .text a:hover {
+    text-decoration: none;
+}
+
 .convo .message-container .message .credent .user {
     color: rgb(255, 106, 51);
     font-size: 18px;
     display: flex;
     align-items: center;
+    margin-left: 10px;
+}
+
+.convo .message-container .message .credent .user .whisper {
+    color: pink;
+    font-size: 11px;
     margin-left: 10px;
 }
 
@@ -410,7 +426,7 @@ body, html, #root, #App {
 @media only screen and (max-width: 540px) {
     .info,.info.hidden {
         width: 181.4px;
-        position: absolute;
+        position: fixed;
         top: 0;
         left: 0;
         background: rgba(0, 75, 75);

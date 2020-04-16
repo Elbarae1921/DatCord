@@ -26,10 +26,15 @@ function roomExists(room) {
     return users.find(user => user.room === room) ? true : false;
 }
 
+function getUserByUsername(username) {
+    return users.find(user => user.username == username);
+}
+
 module.exports = {
     userJoin,
     getCurrentUser,
     userLeave,
     getRoomUsers,
-    roomExists
+    roomExists,
+    getUserByUsername
 }

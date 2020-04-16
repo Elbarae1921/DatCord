@@ -55,7 +55,7 @@ var oldVal = '';
 
 
 // ==> functions
-function addMessage(username, time, message, me='') { //function to add a message to the page
+function addMessage(username, time, message, me='', whisper=false, fromto='') { //function to add a message to the page
     time = getTime(time); //parsing the time string
 
     // ==> creating the element that holds the username
@@ -63,6 +63,14 @@ function addMessage(username, time, message, me='') { //function to add a messag
     userElem.classList.add("user"); //add the corresponding class
     userElem.innerHTML = "<span></span>";
     userElem.firstElementChild.innerText = username; //add the username
+
+    //if the message is a whisper
+    if(whisper) {
+        if(me)
+            userElem.innerHTML += `<span class="whisper">[whisper to ${fromto}]</span>`;
+        else
+            userElem.innerHTML += `<span class="whisper">[whisper from ${fromto}]</span>`;
+    }
     
     // ==> creating the element that holds the time
     var timeElem = document.createElement('div'); //create the element
@@ -73,7 +81,7 @@ function addMessage(username, time, message, me='') { //function to add a messag
     // ==> creating the element that holds the message text
     var textElem = document.createElement('div'); //create the element
     textElem.classList.add("text"); //add the corresponding class
-    textElem.innerText = message; //add the message text
+    textElem.innerHTML = message; //add the message text
 
     // ==> creating the element that contains the username element and time element
     var credElem = document.createElement('div'); //create the element
@@ -193,6 +201,15 @@ socket.on('message', ({userid, username, text, time}) => {
     cancelTyping(); //cancel the typing notification
     var me = userid == userID ? "me" : ""; //check if the message is from the current user
     addMessage(username, time, text, me); //add the message to the conversation
+});
+
+// ==> when a whisper is recieved
+socket.on('whisper', ({userid, username, text, time, fromto}) => {
+    clearTimeout(cancel); //clear timeout to stop the typing notification if it was active
+    cancelTyping(); //cancel the typing notification
+    var me = userid == userID ? "me" : ''; //check if the whisper is from the current user
+    addMessage(username, time, text, me, true, fromto); //add the whisper to the conversation
+    console.log(fromto);
 });
 
 // ==> when a user is typing
