@@ -68,6 +68,7 @@ body, html, #root, #App {
 
 .input-group input:focus {
     border-bottom: 1px solid white;
+    outline: none;
     transition: 200ms;
 }
 
@@ -208,6 +209,10 @@ body, html, #root, #App {
     padding-left: 2%;
 }
 
+.composer form input:focus {
+    outline: none;
+}
+
 .composer form button {
     background: teal;
     border: none;
@@ -227,6 +232,21 @@ body, html, #root, #App {
 .composer form button:hover {
     background: rgb(1, 180, 180);
     transition: 200ms;
+}
+
+.composer form button:focus {
+    outline: none;
+}
+
+.composer form .emojionearea.emojionearea-inline {
+    background: transparent;
+    border-radius: 30px;
+    color: white;
+    font-family: monospace;
+}
+
+.composer form .emojionearea-editor {
+    color: white;
 }
 
 .show, .hide {
@@ -270,12 +290,7 @@ body, html, #root, #App {
 }
 
 .convo::-webkit-scrollbar {
-    width: 5px;
-    transition: 200ms;
-}
-
-.convo::-webkit-scrollbar:hover {
-    width: 10px;
+    width: 7px;
     transition: 200ms;
 }
 

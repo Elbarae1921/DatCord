@@ -1,4 +1,8 @@
 // ==> jquery code for some elements to be hidden on mobile view
+$(document).ready(function() {
+    $("#textmessage").emojioneArea();
+});
+
 $('.page-container').on('click', '.show', function() {
     this.innerText = "<";
     document.querySelector('.info').classList.remove('hidden');
@@ -150,6 +154,7 @@ messageForm.addEventListener('submit', function(e) {
     if(message.value.trim()) { //check if there is something in the message field
         socket.emit('chatMessage', message.value); //send the message to the socket
         message.value = ''; //empty the message field
+        $('.emojionearea-editor').html('');
         message.focus(); //focus on the message field
     }
 });
