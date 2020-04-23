@@ -1,5 +1,5 @@
 # DatCord
-DatCord instant chat app (still building)
+DatCord instant chat app
 
 # Usage
 
