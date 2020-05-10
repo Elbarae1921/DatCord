@@ -10,7 +10,12 @@ const formatMessage = require('./utils/message');
 
 //initialize the app using express
 const app = express();
-const server = http.createServer(app); //creating a server using the http module (since express() doesn't return a server anymore but a function, which wouldn't work with socket.io)
+// set the views folder and templating engine
+app.set('view engine', 'ejs');
+
+//creating a server using the http module (since express() doesn't return a server anymore but a function, which wouldn't work with socket.io)
+const server = http.createServer(app); 
+
 const io = socketio(server); //initialize the socket to work on the current server
 
 //function to escape html characters : & < > " '
@@ -160,6 +165,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // set the website's favicon
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+app.get('/', (_, res) => {
+    res.render('login');
+});
+
+app.get('/chat/:username/:room', (req, res) =>{
+    const username = req.params.username;
+    const room = req.params.room;
+    if(room && username) {
+        res.render('chat', {username, room});
+    }
+    else {
+        res.redirect('/');
+    }
+})
 
 // POST ==> /roomExists params: {room: "the room id"}
 app.post('/roomExists', (req, res) => {

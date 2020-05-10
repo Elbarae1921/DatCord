@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.3/qs.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="emojionearea.min.js"></script>
-    <link rel="stylesheet" href="emojionearea.min.css">
-    <link rel="stylesheet" href="style.css">
-    <title>DatCord</title>
+    <script src="/emojionearea.min.js"></script>
+    <link rel="stylesheet" href="/emojionearea.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <title>DatCord</title> 
+    <script>
+        const username = "<%= username %>";
+        const room = "<%= room %>";
+    </script>
 </head>
 <body>
     <div id="root">
@@ -17,7 +20,7 @@
                 <div class="page-container">
                     <button class="show">></button>
                     <div class="logo-container">
-                        <div class="logo"><img src="logo.png" alt="DatCord" width="70px" height="70px"> DatCord</div>
+                        <div class="logo"><img src="/logo.png" alt="DatCord" width="70px" height="70px"> DatCord</div>
                     </div>
                     <div class="chat-container">
                         <div class="info hidden">
@@ -42,7 +45,7 @@
                                 <div id="typing"><div></div></div>
                                 <form action="" id="message-form">
                                     <input type="text" id="textmessage" autocomplete="off">
-                                    <button id="send" type="submit"><img src="send.png" alt="send" width="24px" height="24px" draggable="false"></button>
+                                    <button id="send" type="submit"><img src="/send.png" alt="send" width="24px" height="24px" draggable="false"></button>
                                 </form>
                             </div>
                         </div>
@@ -52,6 +55,6 @@
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="chat.js"></script>
+    <script src="/chat.js"></script>
 </body>
 </html>

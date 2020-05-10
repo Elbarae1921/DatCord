@@ -23,11 +23,6 @@ $('.convo').on('click', function(){
 // ==> user ID to differentiate the user's message from other messages
 var userID;
 
-// ==> getting the username and room values from the url
-const {username, room} = Qs.parse(location.search, {
-    ignoreQueryPrefix: true
-});
-
 // ==> initialazing a websocket connection
 const socket = io();
 

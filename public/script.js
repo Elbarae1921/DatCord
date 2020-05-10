@@ -49,7 +49,7 @@ join.onclick = function() {
                 if(res.users.filter(user => user.username == username.value).length > 0)
                     errorize(username, "This username is already used in this room");
                 else
-                    window.location.href = `/chat.html?create=false&username=${username.value}&room=${room.value}`;
+                    window.location.href = `/chat/${username.value}/${room.value}`;
             
             }
             else    //otherwise display error
@@ -88,7 +88,7 @@ create.onclick = function() {
             if(res.exists) //if the room already exists display an error
                 errorize(room, "This room already exists.");
             else    //otherwise redirect to the room in chat.html
-                window.location.href = `/chat.html?username=${username.value}&room=${room.value}`;
+                window.location.href = `/chat/${username.value}/${room.value}`;
         },
         error: function() { //if there was a network error
             err("There has been an error with the server");
