@@ -9,15 +9,25 @@ $('.page-container').on('click', '.show', function() {
     this.classList.add('hide');
     this.classList.remove('show');
 });
+
 $('.page-container').on('click', '.hide', function() {
     this.innerText = ">";
     document.querySelector('.info').classList.add('hidden');
     this.classList.add('show');
     this.classList.remove('hide');
 });
-$('.convo').on('click', function(){
-    message.focus();
-})
+
+$('.convo').on('click', function() {
+    document.querySelector('.emojionearea-editor').focus();
+});
+
+$('.page-container').on('keyup', '.emojionearea-editor', function(e) {
+    // if enter is pressed, trigger submit
+    if (e.keyCode == 13) {
+        return messageForm.requestSubmit();
+    }
+    socket.emit('typing'); //notify the socket that the user is typing
+});
 
 
 // ==> user ID to differentiate the user's message from other messages
@@ -146,27 +156,30 @@ function getTime(date) { //parse the datetime string recieved form the server
 // ==> message send event
 messageForm.addEventListener('submit', function(e) {
     e.preventDefault(); //prevent the form from submitting
+    document.querySelector('.emojionearea-editor').blur();
+    console.log(message.value);
     if(message.value.trim()) { //check if there is something in the message field
         socket.emit('chatMessage', message.value); //send the message to the socket
         message.value = ''; //empty the message field
         $('.emojionearea-editor').html('');
-        message.focus(); //focus on the message field
+        document.querySelector('.emojionearea-editor').focus(); //focus on the message field
     }
 });
 
 
 // ==> typing event
-message.addEventListener('keyup', function() { //when the message field's value is changed
-    if(this.value != oldVal) { //compare the current value of the input to its value from the last keyup event
+// message.addEventListener('keyup', function() { //when the message field's value is changed
+//     console.log('wzzup');
+//     if(this.value != oldVal) { //compare the current value of the input to its value from the last keyup event
         
-        if(this.value.trim() != '') { //skip if the field only contains white space
+//         if(this.value.trim() != '') { //skip if the field only contains white space
 
-            socket.emit('typing'); //notify the socket that the user is typing
+//             socket.emit('typing'); //notify the socket that the user is typing
 
-            oldVal = this.value; //set the old value to the current one
-        }
-    }
-});
+//             oldVal = this.value; //set the old value to the current one
+//         }
+//     }
+// });
 
 // ==> leave button click event
 leave.onclick = function() {

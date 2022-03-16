@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  datcord:
+    container_name: datcord
+    restart: always
+    build: .
+    ports:
+      - 5000:5000

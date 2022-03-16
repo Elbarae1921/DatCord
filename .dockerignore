@@ -1,0 +1,6 @@
+*
+!public
+!utils
+!views
+!*.json
+!*.js
